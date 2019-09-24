@@ -79,7 +79,7 @@ Rascal is an experimental domain specific language for metaprogramming, such as 
 
 \pause
 \vskip+5em  
-\flushright{\scriptsize{The following slides are based on the P. Klint's Introductory Course on Rascal}}
+\flushright{\scriptsize{(The following slides are based on the P. Klint's Introductory Course on Rascal)}}
 
 \end{frame}
 
@@ -119,9 +119,9 @@ ColoredTree sample = Red(Black(Leaf(1), Red(leaf(2), Leaf(3))),
 // number of nodes  
 int elements(ColoredTree tree) {
   switch(tree) {
-    case Leaf(n) : return 1; 
+    case Leaf(n)    : return 1; 
+    case Red(l, r)  : return 1 + elements(l) + elements(r);
     case Black(l, r): return 1 + elements(l) + elements(r);
-    case Red(l, r) : return 1 + elements(l) + elements(r);
   }
   return res; 
 } 
@@ -174,7 +174,7 @@ int elements(ColoredTree tree) {
     \begin{lstlisting}[language=Rascal]
     data ColoredTree = Green(ColoredTree l, ColoredTree r);   
     ColoredTree allRedsToGreen(ColoredTree tree) =
-      top-down-break visit (tree) {
+      top-down visit (tree) {
         case Red(l, r) => Green(l, r)
       };
     \end{lstlisting}  
